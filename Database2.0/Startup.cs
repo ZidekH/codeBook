@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace HZ_Project
+namespace Database2._0
 {
     public class Startup
     {
@@ -32,11 +32,11 @@ namespace HZ_Project
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            //services.AddDbContext<ApplicationDbContext> (options =>
-            //options.UseSqlServer(Configuration.GetConnectionString("SchoolContext")));
+            services.AddDbContext<ApplicationDbContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:ConfigDB"]));
+       
 
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +49,7 @@ namespace HZ_Project
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 

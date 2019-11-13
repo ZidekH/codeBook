@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.28307.757
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HZ_Project", "HZ_Project\HZ_Project.csproj", "{4D5ECFA5-384C-4D5B-B02B-8532EC5F0CE5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{557EB5DA-3DF6-4D42-8099-66ED7D1116FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database", "Database\Database.csproj", "{557EB5DA-3DF6-4D42-8099-66ED7D1116FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database2.0", "Database2.0\Database2.0.csproj", "{C1F0E09B-0BA8-409A-9B37-7A0D7A47C495}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{557EB5DA-3DF6-4D42-8099-66ED7D1116FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{557EB5DA-3DF6-4D42-8099-66ED7D1116FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{557EB5DA-3DF6-4D42-8099-66ED7D1116FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1F0E09B-0BA8-409A-9B37-7A0D7A47C495}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1F0E09B-0BA8-409A-9B37-7A0D7A47C495}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1F0E09B-0BA8-409A-9B37-7A0D7A47C495}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1F0E09B-0BA8-409A-9B37-7A0D7A47C495}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
