@@ -11,7 +11,7 @@ namespace Database2._0.Models
         public int WeekendSessionId { get; set; }
         public DateTime DateOfWeekend { get; set; }
 
-        //public List<PlayerWeekendStatistic> PlayerWeekendStatistics { get; set; }
+        public List<PlayerWeekendStatistic> PlayerWeekendStatistics { get; set; }
 
 
     }

@@ -8,7 +8,7 @@ namespace Database2._0.Models
     class Team
     {
         [Key]
-        [MaxLength(90)]
+        public int TeamId { get; set; }
         public string TeamName { get; set; }
 
     }
