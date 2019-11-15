@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Database2._0;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -32,8 +33,8 @@ namespace HZ_Project
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            //services.AddDbContext<ApplicationDbContext> (options =>
-            //options.UseSqlServer(Configuration.GetConnectionString("SchoolContext")));
+            services.AddDbContext<ApplicationDbContext> (options =>
+            options.UseSqlServer(Configuration.GetConnectionString("SchoolContext")));
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);

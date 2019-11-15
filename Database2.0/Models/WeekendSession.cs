@@ -5,12 +5,11 @@ using System.Text;
 
 namespace Database2._0.Models
 {
-    class WeekendSession
+    public class WeekendSession
     {
         [Key]
         public int WeekendSessionId { get; set; }
         public DateTime DateOfWeekend { get; set; }
-
         public List<PlayerWeekendStatistic> PlayerWeekendStatistics { get; set; }
 
 

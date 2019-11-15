@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Database2._0.Models
 {
-    class PersonalInformation
+    public class PersonalInformation
     {
         [Key]
         public int PersonalInformationId { get; set; }

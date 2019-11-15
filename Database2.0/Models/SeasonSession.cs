@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Database2._0.Models
 {
-    class SeasonSession
+   public class SeasonSession
     {
         [Key]
         public int SeasonSessionId { get; set; }

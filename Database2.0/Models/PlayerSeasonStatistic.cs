@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Database2._0.Models
 {
-    class PlayerSeasonStatistic
+   public class PlayerSeasonStatistic
     {
         [Key]
         public int SeasonId { get; set; }

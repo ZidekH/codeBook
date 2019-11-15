@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 
 namespace Database2._0.Models
 {
-    class Administrator
+    public class Administrator
     {
         public int AdministratorId { get; set; }
-
         public int  PlayerId {get; set; }
         public Player Player { get; set; }
     }
