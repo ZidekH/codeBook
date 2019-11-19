@@ -1,0 +1,87 @@
+﻿@model HZ_Project.Models.PersonalInformation
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AllPlayers</title>
+</head>
+<body>
+
+<div>
+    <h4>PersonalInformation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonalInformationId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PersonalInformationId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NickName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NickName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateOfBirth)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SendNotifications)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SendNotifications)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>
+</body>
+</html>
