@@ -11,8 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HZ_Project.Controllers
 {
-    [Route("")]
 
+    [Route("{Controler}")]
     public class PlayerController : Controller
     {
         private IMapper _mapper;
@@ -23,6 +23,14 @@ namespace HZ_Project.Controllers
             this._mapper = mapper;
             this._repository = repository;
         }
+
+        [Route("")]
+        public ViewResult AddPlayerView()
+        {
+            return View("AddPlayer");
+        }
+
+
 
         [HttpGet]
         [Route("details/{id}")]
@@ -39,8 +47,9 @@ namespace HZ_Project.Controllers
 
         [HttpPost]
         [Route("AddPlayer")]
-        public IActionResult CreatePlayer([FromBody]Player player)
+        public IActionResult CreatePlayer([FromForm]Player player)
         {
+            //ToDo udělat asynchroně
             try
             {
                 if (ModelState.IsValid)
@@ -49,11 +58,11 @@ namespace HZ_Project.Controllers
                     _repository.Player.Insert(playerDB);
                     _repository.Player.Save();
 
-                    return StatusCode(100);
+                    return View();
                 }
                 return StatusCode(101);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return StatusCode(500);
                 throw new Exception("Chyba");

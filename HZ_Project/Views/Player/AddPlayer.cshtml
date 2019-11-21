@@ -1,0 +1,62 @@
+﻿@model HZ_Project.Models.Player
+
+@{
+    ViewData["Title"] = "AddPlayer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AddPlayer</h2>
+
+<h4>Player</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddPlayer">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="PersonalInformation.Name" class="control-label"></label>
+                <input asp-for="PersonalInformation.Name" class="form-control" />
+                <span asp-validation-for="PersonalInformation.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PersonalInformation.LastName" class="control-label"></label>
+                <input asp-for="PersonalInformation.LastName" class="form-control" />
+                <span asp-validation-for="PersonalInformation.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PersonalInformation.NickName" class="control-label"></label>
+                <input asp-for="PersonalInformation.NickName" class="form-control" />
+                <span asp-validation-for="PersonalInformation.NickName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PersonalInformation.PhoneNumber" class="control-label"></label>
+                <input asp-for="PersonalInformation.PhoneNumber" class="form-control" />
+                <span asp-validation-for="PersonalInformation.PhoneNumber" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label asp-for="PersonalInformation.Email" class="control-label"></label>
+                <input asp-for="PersonalInformation.Email" class="form-control" />
+                <span asp-validation-for="PersonalInformation.Email" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label asp-for="PersonalInformation.Password" class="control-label"></label>
+                <input asp-for="PersonalInformation.Password" class="form-control" />
+                <span asp-validation-for="PersonalInformation.Password" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label asp-for="PersonalInformation.SendNotifications" class="control-label"></label>
+                <input asp-for="PersonalInformation.SendNotifications" class="form-control" />
+                <span asp-validation-for="PersonalInformation.SendNotifications" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

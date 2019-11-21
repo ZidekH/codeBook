@@ -4,14 +4,16 @@ using EFDatabase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EFDatabase.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191119193548_test")]
+    partial class test
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -65,21 +67,6 @@ namespace EFDatabase.Migrations
                     b.HasKey("PersonalInformationId");
 
                     b.ToTable("PersonalInformation");
-
-                    b.HasData(
-                        new
-                        {
-                            PersonalInformationId = 1,
-                            DateOfBirth = new DateTime(1995, 5, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "hjfdsf@fdsfds.cz",
-                            IsActive = true,
-                            LastName = "Příjmení",
-                            Name = "Jméno",
-                            NickName = "Karlík",
-                            Password = "fdsfdsfdsfdsf",
-                            PhoneNumber = "776789123",
-                            SendNotifications = true
-                        });
                 });
 
             modelBuilder.Entity("EFDatabase.Models.Player", b =>
@@ -100,15 +87,6 @@ namespace EFDatabase.Migrations
                         .IsUnique();
 
                     b.ToTable("Players");
-
-                    b.HasData(
-                        new
-                        {
-                            PlayerId = 2,
-                            GoalsCount = 0,
-                            PersonalInformationId = 1,
-                            WeekendCounts = 0
-                        });
                 });
 
             modelBuilder.Entity("EFDatabase.Models.PlayerSeasonStatistic", b =>
@@ -128,14 +106,6 @@ namespace EFDatabase.Migrations
                     b.HasIndex("SeasonSessionId");
 
                     b.ToTable("PlayerSeasonStatistics");
-
-                    b.HasData(
-                        new
-                        {
-                            SeasonId = 7,
-                            PlayerId = 2,
-                            SeasonSessionId = 10
-                        });
                 });
 
             modelBuilder.Entity("EFDatabase.Models.PlayerWeekendStatistic", b =>
@@ -163,16 +133,6 @@ namespace EFDatabase.Migrations
                     b.HasIndex("WeekendSessionId");
 
                     b.ToTable("PlayerWeekendStatistics");
-
-                    b.HasData(
-                        new
-                        {
-                            PlayerWeekendId = 4,
-                            Asisstance = 3,
-                            Goals = 5,
-                            TeamId = 4,
-                            WeekendSessionId = 3
-                        });
                 });
 
             modelBuilder.Entity("EFDatabase.Models.SeasonSession", b =>
@@ -194,17 +154,6 @@ namespace EFDatabase.Migrations
                     b.HasKey("SeasonSessionId");
 
                     b.ToTable("SeasonSessions");
-
-                    b.HasData(
-                        new
-                        {
-                            SeasonSessionId = 10,
-                            CountOfGoals = 0,
-                            DateFrom = new DateTime(2019, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateTo = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsCurrentSeason = true,
-                            SeasonYear = 2019
-                        });
                 });
 
             modelBuilder.Entity("EFDatabase.Models.Team", b =>
@@ -218,13 +167,6 @@ namespace EFDatabase.Migrations
                     b.HasKey("TeamId");
 
                     b.ToTable("Teams");
-
-                    b.HasData(
-                        new
-                        {
-                            TeamId = 4,
-                            TeamName = "černí"
-                        });
                 });
 
             modelBuilder.Entity("EFDatabase.Models.WeekendSession", b =>
@@ -238,13 +180,6 @@ namespace EFDatabase.Migrations
                     b.HasKey("WeekendSessionId");
 
                     b.ToTable("WeekendSessions");
-
-                    b.HasData(
-                        new
-                        {
-                            WeekendSessionId = 3,
-                            DateOfWeekend = new DateTime(2019, 11, 17, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
                 });
 
             modelBuilder.Entity("EFDatabase.Models.Administrator", b =>

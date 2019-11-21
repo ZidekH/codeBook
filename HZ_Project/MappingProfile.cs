@@ -14,10 +14,16 @@ namespace HZ_Project
 
         public MappingProfile()
         {
+
             CreateMap<EF_Models.Player, DTO_Models.Player>();
 
             CreateMap<EF_Models.PersonalInformation, DTO_Models.PersonalInformation>();
+            
+            CreateMap< DTO_Models.Player,EF_Models.Player > ();
 
+            CreateMap< DTO_Models.PersonalInformation,EF_Models.PersonalInformation > ();
+
+           
             //CreateMap<EF_Models.PersonalInformation, DTO_Models.PlayeDetailsViewModel>();
         }
     }
