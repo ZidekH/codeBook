@@ -25,6 +25,11 @@ namespace EFDatabase.Repositories
             return table.Include(x => x.PersonalInformation).Where(y => y.PersonalInformationId == id).FirstOrDefault();
         }
 
+        public IEnumerable<Player> SelectTopShoters(int countOfPlayers)
+        {
+            return table.Include(x => x.PersonalInformation).OrderByDescending(y => y.GoalsCount).Take(countOfPlayers);
+        }
+
     }
 
 }

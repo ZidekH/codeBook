@@ -45,6 +45,18 @@ namespace HZ_Project.Controllers
          
         }
 
+        [HttpGet]
+        [Route("topShoters/{countOfPlayer}")]
+        public PartialViewResult SelectTopShoters(int countOfPlayer)
+        {
+            var player = _repository.Player.SelectTopShoters(countOfPlayer);
+
+            var x = _mapper.Map<IEnumerable<Models.Player>>(player);
+                
+            return PartialView("Player/TopShoters", x);
+                      
+        }
+
 
         [HttpGet]
         [Route("All")]

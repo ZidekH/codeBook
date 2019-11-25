@@ -12,6 +12,8 @@ namespace EFDatabase.Repositories
 
         Player GetInfoById_relatedData(int id);
 
+        IEnumerable<Player> SelectTopShoters(int countOfPlayers);
+
        
 
 

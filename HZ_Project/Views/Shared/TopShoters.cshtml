@@ -1,0 +1,12 @@
+﻿@model IEnumerable<HZ_Project.Models.Player>
+
+
+<ul class="list-group">
+    @foreach (var player in Model)
+    {
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            @player.PersonalInformation.Name @player.PersonalInformation.LastName
+            <span class="badge badge-primary badge-pill">@player.GoalsCount</span>
+        </li>
+    }
+</ul>
