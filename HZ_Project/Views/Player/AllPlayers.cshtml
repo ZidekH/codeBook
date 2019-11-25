@@ -1,8 +1,10 @@
-﻿@model HZ_Project.Models.PersonalInformation
+﻿@model IEnumerable<HZ_Project.Models.Player>
 
-@{
-    Layout = null;
-}
+    @{
+        ViewData["Title"] = "AddPlayer";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
 
 <!DOCTYPE html>
 
@@ -12,76 +14,35 @@
     <title>AllPlayers</title>
 </head>
 <body>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Jméno</th>
+                <th scope="col">Příjmení</th>
+                <th scope="col">Přezdívka</th>
+            </tr>
+        </thead>
+        <tbody>
 
-<div>
-    <h4>PersonalInformation</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.PersonalInformationId)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PersonalInformationId)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.NickName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.NickName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Password)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.DateOfBirth)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DateOfBirth)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.IsActive)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.SendNotifications)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.SendNotifications)
-        </dd>
-    </dl>
-</div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
-</div>
+            @foreach (var x in Model)
+            {
+                <tr>
+                    <th scope="row">@x.ID</th>
+                    <td>@x.PersonalInformation.Name</td>
+                    <td>@x.PersonalInformation.LastName</td>
+                    <td>@x.PersonalInformation.NickName</td>
+                    <td><button class="btn btn-primary btn-sm" asp-controller="player" asp-action="Details"  asp-route-id="1">Upravit</button></td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+
+    <div>
+
+        <a asp-action="Index">Back to List</a>
+    </div>
 </body>
 </html>

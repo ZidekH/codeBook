@@ -36,14 +36,13 @@ namespace HZ_Project
 
 
 
-            //services.AddDbContext<ApplicationDbContext> (options =>
-            //options.UseSqlServer(Configuration.GetConnectionString("ApplicationDbContext")));
+
             services.ConfigureMySqlContext(Configuration);
             services.ConfigureRepositoryWrapper();
             
             services.AddAutoMapper(typeof(Startup));
 
-            services.AddMvc()/*.SetCompatibilityVersion(CompatibilityVersion.Version_2_1)*/;
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

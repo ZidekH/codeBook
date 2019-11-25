@@ -23,6 +23,8 @@ namespace HZ_Project
 
             CreateMap< DTO_Models.PersonalInformation,EF_Models.PersonalInformation > ();
 
+            //CreateMap<IEnumerable<EF_Models.Player>, IEnumerable<DTO_Models.Player>>();
+
            
             //CreateMap<EF_Models.PersonalInformation, DTO_Models.PlayeDetailsViewModel>();
         }

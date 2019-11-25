@@ -9,5 +9,11 @@ namespace EFDatabase.Repositories
     public interface IPlayerRepository : ICommonRepository<Player>
     {
         IEnumerable<Player> GetAllPlayersWithPersonalInformation();
+
+        Player GetInfoById_relatedData(int id);
+
+       
+
+
     }
 }
