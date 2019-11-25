@@ -1,0 +1,9 @@
+diff a/EFDatabase/ApplicationDbContext.cs b/EFDatabase/ApplicationDbContext.cs	(rejected hunks)
+@@ -30,7 +30,6 @@
+         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+         {
+             optionsBuilder.UseSqlServer(
+-                @"Server=VM-SHP16;Database=SoccerDB;Integrated Security=True");
+                 @"Server=WIN-6HUOGQHSQOD;Database=SoccerDB;Integrated Security=True");
+         }
+ 

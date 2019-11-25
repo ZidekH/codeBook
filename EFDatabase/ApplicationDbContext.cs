@@ -29,8 +29,8 @@ namespace EFDatabase
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(
-                @"Server=WIN-6HUOGQHSQOD;Database=SoccerDB;Integrated Security=True");
+            //optionsBuilder.UseSqlServer(
+            //    @"Server=VM-SHP16;Database=SoccerDB;Integrated Security=True");
         }
 
 
