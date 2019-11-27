@@ -2,17 +2,14 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-    <h4>Vyhledejte požadovaného hráče</h4>
+    <h2>Vyhledejte požadovaného hráče</h2>
     <div class="container">
-        <div class="row">
-            <div class="col">
+        
             <form class="form-inline mr-auto" asp-action="SearchPlayer">
                 <input asp-for="SearchText" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
                 <button class="btn blue-gradient btn-rounded btn-sm my-0" type="submit">Vyhledat hráče</button>
             </form>
-            </div>
-        </div>
- 
+       
 
         @if (ViewBag.Answear != null)
         {
