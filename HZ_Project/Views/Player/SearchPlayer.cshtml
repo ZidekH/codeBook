@@ -1,0 +1,57 @@
+﻿@model HZ_Project.Models.ViewModels.SearchPlayer
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <h4>Vyhledejte požadovaného hráče</h4>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+            <form class="form-inline mr-auto" asp-action="SearchPlayer">
+                <input asp-for="SearchText" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                <button class="btn blue-gradient btn-rounded btn-sm my-0" type="submit">Vyhledat hráče</button>
+            </form>
+            </div>
+        </div>
+ 
+
+        @if (ViewBag.Answear != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                <strong>@ViewBag.Answear</strong>
+            </div>
+        }
+
+
+
+        @if (Model?.ListOfPersonalInformation.Count > 0)
+        {
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Jméno</th>
+                        <th scope="col">Příjmení</th>
+                        <th scope="col">Přezdívka</th>
+                        <th scope="col">Telefonní číslo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (PersonalInformation person in Model.ListOfPersonalInformation)
+                    {
+                        <tr class="table-row" data-href="">
+                            <th>@person.Name</th>
+                            <td>@person.LastName</td>
+                            <td>@person.NickName</td>
+                            <td>@person.PhoneNumber</td>
+                            <td><button asp-route-id="@person.Player?.ID" type="button" class="btn">Detail</button></td>
+                        </tr>
+
+
+                        @*<tr class="table-row" data-href="http://tutorialsplane.com"><td>Jhohn</td><td>jhone@gmail.com</td><td>USA</td></tr>*@
+                    }
+                </tbody>
+            </table>
+        }
+        </div>
+
+
+

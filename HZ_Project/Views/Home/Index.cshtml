@@ -1,7 +1,25 @@
-﻿@model HZ_Project.Models.Player
+﻿@model IEnumerable<HZ_Project.Models.Player>
 
-<h4>Top 3 střelci</h4>
-<partial name="TopShoters" ></partial>
+<div class="jumbotron text-center">
+    <h1>Fotbal komeňák</h1>
+    <p>Vítejte na stránkách o nědělních fotbálkách</p>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Top 3 střelci</h3>
+            <partial name="TopShoters" model=@Model>
+        </div>
+        <div class="col-sm-6">
+            <h3>Novinky</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+        </div>
+    </div>
+</div>
+
+
 
 
 

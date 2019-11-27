@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using EFDatabase.Repositories;
 using HZ_Project.Models;
-
+using HZ_Project.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -18,13 +18,44 @@ namespace HZ_Project.Controllers
         private IMapper _mapper;
         private IRepositoryWrapper _repository;
 
+
+
         public PlayerController(IRepositoryWrapper repository, IMapper mapper)
         {
             this._mapper = mapper;
             this._repository = repository;
         }
 
-        [Route("")]
+        public IActionResult Index()
+        {
+            return View("SearchPlayer");
+        }
+
+        [HttpPost]
+        public IActionResult SearchPlayer([FromForm] SearchPlayer searchPlayer)
+        {
+            string inputValue = searchPlayer.SearchText;
+            var foundedPersonalInformation = _repository.PersonalInformation.GetByCondition(x => x.Name.Contains(inputValue));
+     
+            searchPlayer.ListOfPersonalInformation =_mapper.Map<List<PersonalInformation>>(foundedPersonalInformation);
+
+            if (searchPlayer.ListOfPersonalInformation.Count() > 5)
+            {
+                ViewBag.Answear = "Prosím specifikujte výběr.";
+                return View("SearchPlayer");
+            }
+            else if(searchPlayer.ListOfPersonalInformation.Count() == 0)
+            {
+                ViewBag.Answear = "Nebyl nalezen žádný uživatel.";
+                return View("SearchPlayer");
+            }
+            return View("SearchPlayer", searchPlayer);
+
+         
+
+         }
+
+        [Route("addPlayer")]
         public ViewResult AddPlayerView()
         {
             return View("AddPlayer");
