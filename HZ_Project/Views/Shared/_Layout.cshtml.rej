@@ -1,0 +1,10 @@
+diff a/HZ_Project/Views/Shared/_Layout.cshtml b/HZ_Project/Views/Shared/_Layout.cshtml	(rejected hunks)
+@@ -32,7 +32,7 @@
+                 <ul class="nav navbar-nav">
+                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Domů</a></li>
+                     <li><a asp-area="" asp-controller="Home" asp-action="News">Novinky</a></li>
+-                    <li><a asp-area="" asp-controller="Statistics" asp-action="News">Statistiky</a></li>
++                    <li><a asp-area="" asp-controller="Statistic" asp-action="Index">Statistiky</a></li>
+                     <li><a asp-area="" asp-controller="Player" asp-action="Players">Hráči</a></li>
+                     <li><a asp-area="" asp-controller="Weekend" asp-action="Contact">Víkendy</a></li>
+                     <li><a asp-area="" asp-controller="Season" asp-action="Contact">Sezóny</a></li>

@@ -10,7 +10,11 @@ namespace EFDatabase.Models
         [Key]
         public int WeekendSessionId { get; set; }
         public DateTime DateOfWeekend { get; set; }
-        public List<PlayerWeekendStatistic> PlayerWeekendStatistics { get; set; }
+
+        public int GoalsOfWeekend { get; set; }
+        //public List<Team> Teams { get; set; }
+        public List<Match> Matches { get; set; }
+
 
 
     }

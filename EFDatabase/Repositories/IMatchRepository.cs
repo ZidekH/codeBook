@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace EFDatabase.Repositories
 {
-   public interface IPersonalInformationRepository :ICommonRepository<PersonalInformation>
+    public interface IMatchRepository : ICommonRepository<Match>
     {
-        PersonalInformation GetInfoById_relatedData(int id);
+        Match GetById_TeamsPlayerWeekendStsIncluded(int id);
     }
 }

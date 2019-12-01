@@ -16,17 +16,29 @@ namespace HZ_Project
         {
 
             CreateMap<EF_Models.Player, DTO_Models.Player>();
-
-            CreateMap<EF_Models.PersonalInformation, DTO_Models.PersonalInformation>();
-            
+                    
             CreateMap< DTO_Models.Player,EF_Models.Player > ();
 
-            CreateMap< DTO_Models.PersonalInformation,EF_Models.PersonalInformation > ();
+            //WeekendSession
+            CreateMap<DTO_Models.Match, EF_Models.Match>();
+
+            CreateMap<EF_Models.Match, DTO_Models.Match>();
+
+            CreateMap<DTO_Models.Team, EF_Models.Team>();
+
+            CreateMap<EF_Models.Team, DTO_Models.Team>();
+
+            CreateMap<DTO_Models.PlayerWeekendStatistic, EF_Models.PlayerWeekendStatistic>();
+
+            CreateMap<EF_Models.PlayerWeekendStatistic, DTO_Models.PlayerWeekendStatistic>();
+
+
+
 
             //CreateMap<IEnumerable<EF_Models.Player>, IEnumerable<DTO_Models.Player>>();
 
-           
-            //CreateMap<EF_Models.PersonalInformation, DTO_Models.PlayeDetailsViewModel>();
+
+            //CreateMap<EF_Models., DTO_Models.PlayeDetailsViewModel>();
         }
     }
 }

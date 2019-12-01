@@ -8,6 +8,7 @@ namespace EFDatabase.Models
    public class SeasonSession
     {
         [Key]
+
         public int SeasonSessionId { get; set; }
         public int SeasonYear { get; set; }
         public DateTime DateFrom { get; set; }

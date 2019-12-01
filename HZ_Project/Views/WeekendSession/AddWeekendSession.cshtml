@@ -1,0 +1,36 @@
+﻿@model HZ_Project.Models.WeekendSession
+
+@{
+    ViewData["Title"] = "AddWeekendSession";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AddWeekendSession</h2>
+
+<h4>WeekendSession</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddWeekendSession">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+              <div class="form-group">
+                <label asp-for="DateOfWeekend" class="control-label"></label>
+                <input asp-for="DateOfWeekend" class="form-control" />
+                <span asp-validation-for="DateOfWeekend" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GoalsOfWeekend" class="control-label"></label>
+                <input asp-for="GoalsOfWeekend" class="form-control" />
+                <span asp-validation-for="GoalsOfWeekend" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

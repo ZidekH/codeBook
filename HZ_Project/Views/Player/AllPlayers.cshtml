@@ -28,10 +28,10 @@
             @foreach (var x in Model)
             {
                 <tr>
-                    <th scope="row">@x.ID</th>
-                    <td>@x.PersonalInformation.Name</td>
-                    <td>@x.PersonalInformation.LastName</td>
-                    <td>@x.PersonalInformation.NickName</td>
+                    <th scope="row">@x.PlayerId</th>
+                    <td>@x.Name</td>
+                    <td>@x.LastName</td>
+                    <td>@x.NickName</td>
                     <td><button class="btn btn-primary btn-sm" asp-controller="player" asp-action="Details"  asp-route-id="1">Upravit</button></td>
                 </tr>
             }

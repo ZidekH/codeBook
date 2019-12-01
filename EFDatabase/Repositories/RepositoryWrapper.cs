@@ -10,7 +10,10 @@ namespace EFDatabase.Repositories
     {
         private ApplicationDbContext _applicationDbContext;
         private IPlayerRepository _player;
-        private IPersonalInformationRepository _personalInformation;
+        private IMatchRepository _match;
+        private IWeekendSessionRepository _weekendSession;
+        private IPlayerWeekendStatisticsRepository _playerWeekendStatistics;
+      
 
         public RepositoryWrapper(ApplicationDbContext applicationDbContext)
         {
@@ -24,13 +27,32 @@ namespace EFDatabase.Repositories
                 }
         }
 
-        public IPersonalInformationRepository PersonalInformation
+        public IMatchRepository Match
         {
             get
             {
-                if (this._personalInformation == null)
-                    this._personalInformation = new PersonalInformationRepository(this._applicationDbContext);
-                return this._personalInformation;
+                if (this._match == null)
+                    this._match = new MatchRepository(this._applicationDbContext);
+                return this._match;
+            }
+        }
+        public IWeekendSessionRepository WeekendSession
+        {
+            get
+            {
+                if (this._weekendSession == null)
+                    this._weekendSession = new WeekendSessionRepository(this._applicationDbContext);
+                return this._weekendSession;
+            }
+        }
+
+        public IPlayerWeekendStatisticsRepository PlayerWeekendStatistics
+        {
+            get
+            {
+                if (this._playerWeekendStatistics == null)
+                    this._playerWeekendStatistics = new PlayerWeekendStatisticsRepository(this._applicationDbContext);
+                return this._playerWeekendStatistics;
             }
         }
 

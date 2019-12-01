@@ -13,21 +13,21 @@ namespace EFDatabase.Repositories
             :base(applicationDbContext)
         { }
 
-        public IEnumerable<Player> GetAllPlayersWithPersonalInformation()
-        {
-            return table.Include(x => x.PersonalInformation).ToList();
+        //public IEnumerable<Player> GetAllPlayersWith()
+        //{
+        //    return table.Include(x => x.).ToList();
 
-        }
+        //}
 
-        public Player GetInfoById_relatedData(int id)
-        {
-            //Todo: Not working with DBset Table here!!!!!!
-            return table.Include(x => x.PersonalInformation).Where(y => y.PersonalInformationId == id).FirstOrDefault();
-        }
+        //public Player GetInfoById_relatedData(int id)
+        //{
+        //    //Todo: Not working with DBset Table here!!!!!!
+        //    return table.Include(x => x.).Where(y => y.Id == id).FirstOrDefault();
+        //}
 
         public IEnumerable<Player> SelectTopShoters(int countOfPlayers)
         {
-            return table.Include(x => x.PersonalInformation).OrderByDescending(y => y.GoalsCount).Take(countOfPlayers);
+            return table.OrderByDescending(y => y.GoalsCount).Take(countOfPlayers);
         }
 
     }

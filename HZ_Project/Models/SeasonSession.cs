@@ -15,7 +15,9 @@ namespace HZ_Project.Models
         public bool IsCurrentSeason { get; set; }
         public int CountOfGoals { get; set; }
 
-        public List<PlayerSeasonStatistic> PlayerSeasonsStatistics { get; set; }
+        public List<WeekendSession> WeekendSessions = new List<WeekendSession>();
+
+
 
     }
 }

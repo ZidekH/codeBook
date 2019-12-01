@@ -7,12 +7,11 @@ namespace HZ_Project.Models
 {
     public class Team
     {
-        public string Name { get; set; }
+        public int TeamId { get; set; }
+        public string TeamName { get; set; }
+        public List<PlayerWeekendStatistic> PlayersStatsTeam { get; set; }
 
-        public Team(string name)
-        {
-            this.Name = name;
-        }
-
+        //public int WeekendSessionId { get; set; }
+        //public WeekendSession WeekendSession { get; set; }
     }
 }

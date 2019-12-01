@@ -35,9 +35,9 @@ namespace HZ_Project.Controllers
         public IActionResult SearchPlayer([FromForm] SearchPlayer searchPlayer)
         {
             string inputValue = searchPlayer.SearchText;
-            var foundedPersonalInformation = _repository.PersonalInformation.GetByCondition(x => x.Name.Contains(inputValue));
+            var foundedPersonalInformation = _repository.Player.GetByCondition(x => x.Name.Contains(inputValue));
      
-            searchPlayer.ListOfPersonalInformation =_mapper.Map<List<PersonalInformation>>(foundedPersonalInformation);
+            searchPlayer.ListOfPersonalInformation =_mapper.Map<List<Player>>(foundedPersonalInformation);
 
             if (searchPlayer.ListOfPersonalInformation.Count() > 5)
             {
@@ -67,7 +67,7 @@ namespace HZ_Project.Controllers
         [Route("details/{id}")]
         public IActionResult Details(int id)
         {
-            var player = _repository.Player.GetInfoById_relatedData(id);
+            var player = _repository.Player.GetById(id);
 
              var x = _mapper.Map<Models.Player>(player);
              return View("UpdatePlayer", x);
@@ -93,7 +93,7 @@ namespace HZ_Project.Controllers
         [Route("All")]
         public IActionResult AllPlayer()
         {
-            var player = _repository.Player.GetAllPlayersWithPersonalInformation();
+            var player = _repository.Player.GetAll();
 
 
             var x = _mapper.Map<IEnumerable<Models.Player>>(player);

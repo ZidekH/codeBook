@@ -8,8 +8,10 @@ namespace EFDatabase.Repositories
    public interface IRepositoryWrapper
     {
         IPlayerRepository Player { get; }
-        IPersonalInformationRepository PersonalInformation { get; }
-        //atd...
+        IMatchRepository Match { get; }
+        IWeekendSessionRepository WeekendSession { get; }
+        IPlayerWeekendStatisticsRepository PlayerWeekendStatistics { get; }
+       
 
     }
 }

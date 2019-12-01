@@ -1,0 +1,51 @@
+﻿@model HZ_Project.Models.Match
+@{
+    ViewData["Title"] = "MatchProgress";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div>
+        <h4>@Model.HomeTeam.TeamName <strong>@Model.HomeTeamScore </strong> X @Model.GuestTeam.TeamName <strong>@Model.GuestTeamScore </strong></h4>
+        <form asp-controller="WeekendSessionController" asp-action="GoalManager" method="POST">
+        <input type="hidden" name="matchId" value="@Model.MatchId">
+            <table>
+                <tr>
+                    <td colspan="4">@Model.HomeTeam.TeamName</td>
+                </tr>
+                @foreach (var playerStat in Model.HomeTeam?.PlayersStatsTeam)
+                {
+
+                    <tr>
+                        <td>
+                            @playerStat.Player.Name
+                        <input type="hidden" name="playerWeekendStatisticsId" value="@playerStat.PlayerWeekendId">
+                            </td>
+
+                    <td><button name="GoalAction" type="submit" value="+">+</button></td>
+                    <td><button name="GoalAction" type="submit" value="-">-</button></td>
+                    <td>@playerStat.Goals</td>
+                </tr>
+            }
+            </table>
+
+            <table>
+                <tr>
+                    <td colspan="4">@Model.GuestTeam.TeamName</td>
+                </tr>
+                @foreach (var playerStat in Model.GuestTeam?.PlayersStatsTeam)
+                {
+                    <tr>
+                        <td>@playerStat.Player.Name</td>
+                        <td><button>+</button></td>
+                        <td><button>-</button></td>
+                        <td>@playerStat.Goals</td>
+                    </tr>
+
+                }
+            </table>
+        </form>
+
+
+    </div>
+<h2>MatchProgress</h2>
+

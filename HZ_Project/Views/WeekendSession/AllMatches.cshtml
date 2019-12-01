@@ -1,0 +1,17 @@
+﻿@model List<HZ_Project.Models.Match>
+@{
+    ViewData["Title"] = "AllMatches";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <H4>Seznam všech zápasů v rámci víkendu</H4>
+    <div class="container">   
+<table>
+    @foreach (Match match in Model)
+    {
+        <tr>
+            <td><a asp-action="getMatch" asp-route-id="@match.MatchId" >@match.HomeTeam.TeamName VS @match.GuestTeam.TeamName</a></td>
+        </tr>
+    }
+</table>
+        </div>   
+

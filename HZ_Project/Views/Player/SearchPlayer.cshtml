@@ -32,14 +32,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (PersonalInformation person in Model.ListOfPersonalInformation)
+                    @foreach (Player person in Model.ListOfPersonalInformation)
                     {
                         <tr class="table-row" data-href="">
                             <th>@person.Name</th>
                             <td>@person.LastName</td>
                             <td>@person.NickName</td>
                             <td>@person.PhoneNumber</td>
-                            <td><button asp-route-id="@person.Player?.ID" type="button" class="btn">Detail</button></td>
+                            <td><button asp-route-id="@person?.PlayerId" type="button" class="btn">Detail</button></td>
                         </tr>
 
 

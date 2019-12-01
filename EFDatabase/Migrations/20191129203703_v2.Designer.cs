@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFDatabase.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191114160134_Initil2")]
-    partial class Initil2
+    [Migration("20191129203703_v2")]
+    partial class v2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,7 @@ namespace EFDatabase.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Database2._0.Models.Administrator", b =>
+            modelBuilder.Entity("EFDatabase.Models.Administrator", b =>
                 {
                     b.Property<int>("AdministratorId")
                         .ValueGeneratedOnAdd()
@@ -36,9 +36,36 @@ namespace EFDatabase.Migrations
                     b.ToTable("Administrator");
                 });
 
-            modelBuilder.Entity("Database2._0.Models.PersonalInformation", b =>
+            modelBuilder.Entity("EFDatabase.Models.Match", b =>
                 {
-                    b.Property<int>("PersonalInformationId")
+                    b.Property<int>("MatchId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("GuestTeamScore");
+
+                    b.Property<int?>("GuestTeamTeamId");
+
+                    b.Property<int>("HomeTeamScore");
+
+                    b.Property<int?>("HomeTeamTeamId");
+
+                    b.Property<int?>("WeekendSessionId");
+
+                    b.HasKey("MatchId");
+
+                    b.HasIndex("GuestTeamTeamId");
+
+                    b.HasIndex("HomeTeamTeamId");
+
+                    b.HasIndex("WeekendSessionId");
+
+                    b.ToTable("Matches");
+                });
+
+            modelBuilder.Entity("EFDatabase.Models.Player", b =>
+                {
+                    b.Property<int>("PlayerId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -46,56 +73,32 @@ namespace EFDatabase.Migrations
 
                     b.Property<string>("Email");
 
-                    b.Property<bool>("IsActive");
-
-                    b.Property<string>("LastName")
-                        .IsRequired();
-
-                    b.Property<string>("Name")
-                        .IsRequired();
-
-                    b.Property<string>("NickName")
-                        .IsRequired();
-
-                    b.Property<string>("Password")
-                        .IsRequired();
-
-                    b.Property<string>("PhoneNumber");
-
-                    b.Property<bool>("SendNotifications");
-
-                    b.HasKey("PersonalInformationId");
-
-                    b.ToTable("PersonalInformation");
-                });
-
-            modelBuilder.Entity("Database2._0.Models.Player", b =>
-                {
-                    b.Property<int>("PlayerId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
                     b.Property<int>("GoalsCount");
 
-                    b.Property<int>("PersonalInformationId");
+                    b.Property<string>("LastName");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("NickName");
+
+                    b.Property<string>("Password");
+
+                    b.Property<string>("PhoneNumber");
 
                     b.Property<int>("WeekendCounts");
 
                     b.HasKey("PlayerId");
 
-                    b.HasIndex("PersonalInformationId")
-                        .IsUnique();
-
                     b.ToTable("Players");
                 });
 
-            modelBuilder.Entity("Database2._0.Models.PlayerSeasonStatistic", b =>
+            modelBuilder.Entity("EFDatabase.Models.PlayerSeasonStatistic", b =>
                 {
                     b.Property<int>("SeasonId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("PlayerId");
+                    b.Property<int>("PlayerId");
 
                     b.Property<int>("SeasonSessionId");
 
@@ -108,34 +111,24 @@ namespace EFDatabase.Migrations
                     b.ToTable("PlayerSeasonStatistics");
                 });
 
-            modelBuilder.Entity("Database2._0.Models.PlayerWeekendStatistic", b =>
+            modelBuilder.Entity("EFDatabase.Models.PlayerWeekendStatistic", b =>
                 {
                     b.Property<int>("PlayerWeekendId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Asisstance");
-
                     b.Property<int>("Goals");
-
-                    b.Property<int?>("SeasonId");
 
                     b.Property<int>("TeamId");
 
-                    b.Property<int>("WeekendSessionId");
-
                     b.HasKey("PlayerWeekendId");
 
-                    b.HasIndex("SeasonId");
-
                     b.HasIndex("TeamId");
-
-                    b.HasIndex("WeekendSessionId");
 
                     b.ToTable("PlayerWeekendStatistics");
                 });
 
-            modelBuilder.Entity("Database2._0.Models.SeasonSession", b =>
+            modelBuilder.Entity("EFDatabase.Models.SeasonSession", b =>
                 {
                     b.Property<int>("SeasonSessionId")
                         .ValueGeneratedOnAdd()
@@ -156,7 +149,7 @@ namespace EFDatabase.Migrations
                     b.ToTable("SeasonSessions");
                 });
 
-            modelBuilder.Entity("Database2._0.Models.Team", b =>
+            modelBuilder.Entity("EFDatabase.Models.Team", b =>
                 {
                     b.Property<int>("TeamId")
                         .ValueGeneratedOnAdd()
@@ -164,12 +157,16 @@ namespace EFDatabase.Migrations
 
                     b.Property<string>("TeamName");
 
+                    b.Property<int>("WeekendSessionId");
+
                     b.HasKey("TeamId");
+
+                    b.HasIndex("WeekendSessionId");
 
                     b.ToTable("Teams");
                 });
 
-            modelBuilder.Entity("Database2._0.Models.WeekendSession", b =>
+            modelBuilder.Entity("EFDatabase.Models.WeekendSession", b =>
                 {
                     b.Property<int>("WeekendSessionId")
                         .ValueGeneratedOnAdd()
@@ -177,52 +174,61 @@ namespace EFDatabase.Migrations
 
                     b.Property<DateTime>("DateOfWeekend");
 
+                    b.Property<int>("GoalsOfWeekend");
+
                     b.HasKey("WeekendSessionId");
 
                     b.ToTable("WeekendSessions");
                 });
 
-            modelBuilder.Entity("Database2._0.Models.Administrator", b =>
+            modelBuilder.Entity("EFDatabase.Models.Administrator", b =>
                 {
-                    b.HasOne("Database2._0.Models.Player", "Player")
+                    b.HasOne("EFDatabase.Models.Player", "Player")
                         .WithMany()
                         .HasForeignKey("PlayerId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Database2._0.Models.Player", b =>
+            modelBuilder.Entity("EFDatabase.Models.Match", b =>
                 {
-                    b.HasOne("Database2._0.Models.PersonalInformation", "PersonalInformation")
-                        .WithOne("Player")
-                        .HasForeignKey("Database2._0.Models.Player", "PersonalInformationId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.HasOne("EFDatabase.Models.Team", "GuestTeam")
+                        .WithMany()
+                        .HasForeignKey("GuestTeamTeamId");
+
+                    b.HasOne("EFDatabase.Models.Team", "HomeTeam")
+                        .WithMany()
+                        .HasForeignKey("HomeTeamTeamId");
+
+                    b.HasOne("EFDatabase.Models.WeekendSession")
+                        .WithMany("Matches")
+                        .HasForeignKey("WeekendSessionId");
                 });
 
-            modelBuilder.Entity("Database2._0.Models.PlayerSeasonStatistic", b =>
+            modelBuilder.Entity("EFDatabase.Models.PlayerSeasonStatistic", b =>
                 {
-                    b.HasOne("Database2._0.Models.Player", "Player")
+                    b.HasOne("EFDatabase.Models.Player", "Player")
                         .WithMany("Statistics")
-                        .HasForeignKey("PlayerId");
+                        .HasForeignKey("PlayerId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Database2._0.Models.SeasonSession", "SeasonSession")
+                    b.HasOne("EFDatabase.Models.SeasonSession", "SeasonSession")
                         .WithMany("PlayerSeasonsStatistics")
                         .HasForeignKey("SeasonSessionId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Database2._0.Models.PlayerWeekendStatistic", b =>
+            modelBuilder.Entity("EFDatabase.Models.PlayerWeekendStatistic", b =>
                 {
-                    b.HasOne("Database2._0.Models.PlayerSeasonStatistic", "PlayerSeasonStatistic")
-                        .WithMany("AllWeekendStatistics")
-                        .HasForeignKey("SeasonId");
-
-                    b.HasOne("Database2._0.Models.Team", "Team")
+                    b.HasOne("EFDatabase.Models.Team", "Team")
                         .WithMany()
                         .HasForeignKey("TeamId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
 
-                    b.HasOne("Database2._0.Models.WeekendSession", "WeekendSession")
-                        .WithMany("PlayerWeekendStatistics")
+            modelBuilder.Entity("EFDatabase.Models.Team", b =>
+                {
+                    b.HasOne("EFDatabase.Models.WeekendSession", "WeekendSession")
+                        .WithMany("Teams")
                         .HasForeignKey("WeekendSessionId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

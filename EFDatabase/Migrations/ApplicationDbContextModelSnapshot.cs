@@ -34,52 +34,31 @@ namespace EFDatabase.Migrations
                     b.ToTable("Administrator");
                 });
 
-            modelBuilder.Entity("EFDatabase.Models.PersonalInformation", b =>
+            modelBuilder.Entity("EFDatabase.Models.Match", b =>
                 {
-                    b.Property<int>("PersonalInformationId")
+                    b.Property<int>("MatchId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("DateOfBirth");
+                    b.Property<int>("GuestTeamScore");
 
-                    b.Property<string>("Email");
+                    b.Property<int?>("GuestTeamTeamId");
 
-                    b.Property<bool>("IsActive");
+                    b.Property<int>("HomeTeamScore");
 
-                    b.Property<string>("LastName")
-                        .IsRequired();
+                    b.Property<int?>("HomeTeamTeamId");
 
-                    b.Property<string>("Name")
-                        .IsRequired();
+                    b.Property<int?>("WeekendSessionId");
 
-                    b.Property<string>("NickName")
-                        .IsRequired();
+                    b.HasKey("MatchId");
 
-                    b.Property<string>("Password")
-                        .IsRequired();
+                    b.HasIndex("GuestTeamTeamId");
 
-                    b.Property<string>("PhoneNumber");
+                    b.HasIndex("HomeTeamTeamId");
 
-                    b.Property<bool>("SendNotifications");
+                    b.HasIndex("WeekendSessionId");
 
-                    b.HasKey("PersonalInformationId");
-
-                    b.ToTable("PersonalInformation");
-
-                    b.HasData(
-                        new
-                        {
-                            PersonalInformationId = 1,
-                            DateOfBirth = new DateTime(1995, 5, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "hjfdsf@fdsfds.cz",
-                            IsActive = true,
-                            LastName = "Příjmení",
-                            Name = "Jméno",
-                            NickName = "Karlík",
-                            Password = "fdsfdsfdsfdsf",
-                            PhoneNumber = "776789123",
-                            SendNotifications = true
-                        });
+                    b.ToTable("Matches");
                 });
 
             modelBuilder.Entity("EFDatabase.Models.Player", b =>
@@ -88,27 +67,27 @@ namespace EFDatabase.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("DateOfBirth");
+
+                    b.Property<string>("Email");
+
                     b.Property<int>("GoalsCount");
 
-                    b.Property<int>("PersonalInformationId");
+                    b.Property<string>("LastName");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("NickName");
+
+                    b.Property<string>("Password");
+
+                    b.Property<string>("PhoneNumber");
 
                     b.Property<int>("WeekendCounts");
 
                     b.HasKey("PlayerId");
 
-                    b.HasIndex("PersonalInformationId")
-                        .IsUnique();
-
                     b.ToTable("Players");
-
-                    b.HasData(
-                        new
-                        {
-                            PlayerId = 2,
-                            GoalsCount = 0,
-                            PersonalInformationId = 1,
-                            WeekendCounts = 0
-                        });
                 });
 
             modelBuilder.Entity("EFDatabase.Models.PlayerSeasonStatistic", b =>
@@ -117,7 +96,7 @@ namespace EFDatabase.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("PlayerId");
+                    b.Property<int>("PlayerId");
 
                     b.Property<int>("SeasonSessionId");
 
@@ -128,14 +107,6 @@ namespace EFDatabase.Migrations
                     b.HasIndex("SeasonSessionId");
 
                     b.ToTable("PlayerSeasonStatistics");
-
-                    b.HasData(
-                        new
-                        {
-                            SeasonId = 7,
-                            PlayerId = 2,
-                            SeasonSessionId = 10
-                        });
                 });
 
             modelBuilder.Entity("EFDatabase.Models.PlayerWeekendStatistic", b =>
@@ -144,35 +115,19 @@ namespace EFDatabase.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Asisstance");
-
                     b.Property<int>("Goals");
 
-                    b.Property<int?>("SeasonId");
+                    b.Property<int?>("PlayerId");
 
                     b.Property<int>("TeamId");
 
-                    b.Property<int>("WeekendSessionId");
-
                     b.HasKey("PlayerWeekendId");
 
-                    b.HasIndex("SeasonId");
+                    b.HasIndex("PlayerId");
 
                     b.HasIndex("TeamId");
 
-                    b.HasIndex("WeekendSessionId");
-
                     b.ToTable("PlayerWeekendStatistics");
-
-                    b.HasData(
-                        new
-                        {
-                            PlayerWeekendId = 4,
-                            Asisstance = 3,
-                            Goals = 5,
-                            TeamId = 4,
-                            WeekendSessionId = 3
-                        });
                 });
 
             modelBuilder.Entity("EFDatabase.Models.SeasonSession", b =>
@@ -194,17 +149,6 @@ namespace EFDatabase.Migrations
                     b.HasKey("SeasonSessionId");
 
                     b.ToTable("SeasonSessions");
-
-                    b.HasData(
-                        new
-                        {
-                            SeasonSessionId = 10,
-                            CountOfGoals = 0,
-                            DateFrom = new DateTime(2019, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateTo = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsCurrentSeason = true,
-                            SeasonYear = 2019
-                        });
                 });
 
             modelBuilder.Entity("EFDatabase.Models.Team", b =>
@@ -215,16 +159,13 @@ namespace EFDatabase.Migrations
 
                     b.Property<string>("TeamName");
 
+                    b.Property<int>("WeekendSessionId");
+
                     b.HasKey("TeamId");
 
-                    b.ToTable("Teams");
+                    b.HasIndex("WeekendSessionId");
 
-                    b.HasData(
-                        new
-                        {
-                            TeamId = 4,
-                            TeamName = "černí"
-                        });
+                    b.ToTable("Teams");
                 });
 
             modelBuilder.Entity("EFDatabase.Models.WeekendSession", b =>
@@ -235,16 +176,11 @@ namespace EFDatabase.Migrations
 
                     b.Property<DateTime>("DateOfWeekend");
 
+                    b.Property<int>("GoalsOfWeekend");
+
                     b.HasKey("WeekendSessionId");
 
                     b.ToTable("WeekendSessions");
-
-                    b.HasData(
-                        new
-                        {
-                            WeekendSessionId = 3,
-                            DateOfWeekend = new DateTime(2019, 11, 17, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
                 });
 
             modelBuilder.Entity("EFDatabase.Models.Administrator", b =>
@@ -255,19 +191,27 @@ namespace EFDatabase.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("EFDatabase.Models.Player", b =>
+            modelBuilder.Entity("EFDatabase.Models.Match", b =>
                 {
-                    b.HasOne("EFDatabase.Models.PersonalInformation", "PersonalInformation")
-                        .WithOne("Player")
-                        .HasForeignKey("EFDatabase.Models.Player", "PersonalInformationId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.HasOne("EFDatabase.Models.Team", "GuestTeam")
+                        .WithMany()
+                        .HasForeignKey("GuestTeamTeamId");
+
+                    b.HasOne("EFDatabase.Models.Team", "HomeTeam")
+                        .WithMany()
+                        .HasForeignKey("HomeTeamTeamId");
+
+                    b.HasOne("EFDatabase.Models.WeekendSession")
+                        .WithMany("Matches")
+                        .HasForeignKey("WeekendSessionId");
                 });
 
             modelBuilder.Entity("EFDatabase.Models.PlayerSeasonStatistic", b =>
                 {
                     b.HasOne("EFDatabase.Models.Player", "Player")
                         .WithMany("Statistics")
-                        .HasForeignKey("PlayerId");
+                        .HasForeignKey("PlayerId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("EFDatabase.Models.SeasonSession", "SeasonSession")
                         .WithMany("PlayerSeasonsStatistics")
@@ -277,17 +221,20 @@ namespace EFDatabase.Migrations
 
             modelBuilder.Entity("EFDatabase.Models.PlayerWeekendStatistic", b =>
                 {
-                    b.HasOne("EFDatabase.Models.PlayerSeasonStatistic", "PlayerSeasonStatistic")
-                        .WithMany("AllWeekendStatistics")
-                        .HasForeignKey("SeasonId");
+                    b.HasOne("EFDatabase.Models.Player", "Player")
+                        .WithMany()
+                        .HasForeignKey("PlayerId");
 
                     b.HasOne("EFDatabase.Models.Team", "Team")
                         .WithMany()
                         .HasForeignKey("TeamId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
 
+            modelBuilder.Entity("EFDatabase.Models.Team", b =>
+                {
                     b.HasOne("EFDatabase.Models.WeekendSession", "WeekendSession")
-                        .WithMany("PlayerWeekendStatistics")
+                        .WithMany()
                         .HasForeignKey("WeekendSessionId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
