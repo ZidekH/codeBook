@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using EFDatabase.Repositories;
 using HZ_Project.Models;
@@ -12,13 +11,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace HZ_Project.Controllers
 {
 
-    [Route("{Controler}")]
+    [Route("Player")]
     public class PlayerController : Controller
     {
         private IMapper _mapper;
         private IRepositoryWrapper _repository;
-
-
 
         public PlayerController(IRepositoryWrapper repository, IMapper mapper)
         {
@@ -34,58 +31,51 @@ namespace HZ_Project.Controllers
         [HttpPost]
         public IActionResult SearchPlayer([FromForm] SearchPlayer searchPlayer)
         {
-            string inputValue = searchPlayer.SearchText;
-            var foundedPersonalInformation = _repository.Player.GetByCondition(x => x.Name.Contains(inputValue));
-     
-            searchPlayer.ListOfPersonalInformation =_mapper.Map<List<Player>>(foundedPersonalInformation);
-
-            if (searchPlayer.ListOfPersonalInformation.Count() > 5)
+            if (ModelState.IsValid)
             {
-                ViewBag.Answear = "Prosím specifikujte výběr.";
-                return View("SearchPlayer");
+                string inputValue = searchPlayer.SearchText;
+                IEnumerable<EFDatabase.Models.Player> foundedPersonalInformation = _repository.Player.GetByCondition(player => player.Name.Contains(inputValue));
+                searchPlayer.ListOfPersonalInformation = _mapper.Map<List<Player>>(foundedPersonalInformation);
+
+                if (searchPlayer.ListOfPersonalInformation.Count() > 5)
+                {
+                    ViewBag.Answear = "Prosím specifikujte výběr.";
+                    return View("SearchPlayer");
+                }
+                else if (searchPlayer.ListOfPersonalInformation.Count() == 0)
+                {
+                    ViewBag.Answear = "Nebyl nalezen žádný uživatel.";
+                    return View("SearchPlayer");
+                }
+                return View("SearchPlayer", searchPlayer);
             }
-            else if(searchPlayer.ListOfPersonalInformation.Count() == 0)
-            {
-                ViewBag.Answear = "Nebyl nalezen žádný uživatel.";
-                return View("SearchPlayer");
-            }
-            return View("SearchPlayer", searchPlayer);
+            else
+                return StatusCode(400);
+        }
 
-         
-
-         }
-
+        [HttpGet]
         [Route("addPlayer")]
         public ViewResult AddPlayerView()
         {
             return View("AddPlayer");
         }
 
-
-
         [HttpGet]
         [Route("details/{id}")]
         public IActionResult Details(int id)
         {
-            var player = _repository.Player.GetById(id);
-
-             var x = _mapper.Map<Models.Player>(player);
-             return View("UpdatePlayer", x);
-
-            //return Ok(x);
-         
+            EFDatabase.Models.Player playerDB = _repository.Player.GetById(id);
+            Player player = _mapper.Map<Models.Player>(playerDB);
+            return View("UpdatePlayer", player);
         }
 
         [HttpGet]
         [Route("topShoters/{countOfPlayer}")]
         public PartialViewResult SelectTopShoters(int countOfPlayer)
         {
-            var player = _repository.Player.SelectTopShoters(countOfPlayer);
-
-            var x = _mapper.Map<IEnumerable<Models.Player>>(player);
-                
-            return PartialView("Player/TopShoters", x);
-                      
+            IEnumerable<EFDatabase.Models.Player> playersDB = _repository.Player.SelectTopShoters(countOfPlayer);
+            IEnumerable<Player> players = _mapper.Map<IEnumerable<Player>>(playersDB);
+            return PartialView("Player/TopShoters", players);
         }
 
 
@@ -93,47 +83,32 @@ namespace HZ_Project.Controllers
         [Route("All")]
         public IActionResult AllPlayer()
         {
-            var player = _repository.Player.GetAll();
-
-
-            var x = _mapper.Map<IEnumerable<Models.Player>>(player);
-            return View("AllPlayers", x);
-
-            //return Ok(x);
-
+            IEnumerable<EFDatabase.Models.Player> playersDB = _repository.Player.GetAll();
+            IEnumerable<Player> allplayers = _mapper.Map<IEnumerable<Models.Player>>(playersDB);
+            return View("AllPlayers", allplayers);
         }
 
         [HttpPost]
         [Route("AddPlayer")]
         public IActionResult CreatePlayer([FromForm]Player player)
         {
-            //ToDo udělat asynchroně
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    var playerDB = _mapper.Map<EFDatabase.Models.Player>(player);
-                    _repository.Player.Insert(playerDB);
-                    _repository.Player.Save();
 
-                    return View();
-                }
-                return StatusCode(101);
-            }
-            catch (Exception ex)
+            if (ModelState.IsValid)
             {
-                return StatusCode(500);
-                throw new Exception("Chyba");
-                
+                EFDatabase.Models.Player playerDB = _mapper.Map<EFDatabase.Models.Player>(player);
+                _repository.Player.Insert(playerDB);
+                _repository.Player.Save();
+
+                return View();
             }
+            else
+                return StatusCode(400);
         }
-
 
         [HttpPost]
         [Route("UpdatePlayer")]
         public IActionResult UpdatePlayer([FromForm]Player player)
         {
-            //ToDo udělat asynchroně
             try
             {
                 if (ModelState.IsValid)
@@ -144,24 +119,15 @@ namespace HZ_Project.Controllers
 
                     return View();
                 }
-                return StatusCode(101);
+                return StatusCode(400);
             }
             catch (Exception ex)
             {
-                return StatusCode(500);
-                throw new Exception("Chyba");
+                return StatusCode(400);
+                throw new Exception("Update player failed");
 
             }
         }
-
-        //public IActionResult Index()
-        //{
-
-        //    //PlayerS.Statistics.Add(stat);
-
-        //    return View();
-        //}
-
 
     }
 }

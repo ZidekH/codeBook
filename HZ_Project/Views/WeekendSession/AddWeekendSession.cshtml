@@ -1,4 +1,4 @@
-﻿@model HZ_Project.Models.WeekendSession
+﻿@model HZ_Project.Models.ViewModels.AddWeekendSessionModel
 
 @{
     ViewData["Title"] = "AddWeekendSession";
@@ -11,24 +11,23 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="AddWeekendSession">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-              <div class="form-group">
-                <label asp-for="DateOfWeekend" class="control-label"></label>
-                <input asp-for="DateOfWeekend" class="form-control" />
-                <span asp-validation-for="DateOfWeekend" class="text-danger"></span>
+        <form autocomplete="off" action="/action_page.php">
+            <div class="autocomplete" style="width:300px;">
+                <input id="myInput" type="text" name="myCountry" placeholder="Country">
             </div>
-            <div class="form-group">
-                <label asp-for="GoalsOfWeekend" class="control-label"></label>
-                <input asp-for="GoalsOfWeekend" class="form-control" />
-                <span asp-validation-for="GoalsOfWeekend" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+            <input type="submit">
         </form>
     </div>
 </div>
+<script type="text/javascript">
+
+    function getAllPlayers() {
+        var playerPool = "@Model.AllPlayers.Select(x=> new { x.Name,x.LastName}).ToArray()"
+
+    }
+
+</script>
+
 
 <div>
     <a asp-action="Index">Back to List</a>

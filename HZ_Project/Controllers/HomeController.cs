@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using EFDatabase.Repositories;
+using HZ_Project.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HZ_Project.Controllers
@@ -21,10 +22,9 @@ namespace HZ_Project.Controllers
         }
         public IActionResult Index()
         {
-            var player = _repository.Player.SelectTopShoters(3);
-
-            var x = _mapper.Map<IEnumerable<Models.Player>>(player);
-            return View(x);
+            IEnumerable<EFDatabase.Models.Player> topplayersDB = _repository.Player.SelectTopShoters(3);
+            IEnumerable<Player> topPlayers = _mapper.Map<IEnumerable<Models.Player>>(topplayersDB);
+            return View(topPlayers);
         }
     }
 }

@@ -34,14 +34,9 @@ namespace HZ_Project
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
-
-
             services.ConfigureMySqlContext(Configuration);
             services.ConfigureRepositoryWrapper();
-            
             services.AddAutoMapper(typeof(Startup));
-
             services.AddMvc();
         }
 

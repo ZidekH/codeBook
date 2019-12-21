@@ -18,8 +18,6 @@
             </div>
         }
 
-
-
         @if (Model?.ListOfPersonalInformation.Count > 0)
         {
             <table class="table">
@@ -41,9 +39,7 @@
                             <td>@person.PhoneNumber</td>
                             <td><button asp-route-id="@person?.PlayerId" type="button" class="btn">Detail</button></td>
                         </tr>
-
-
-                        @*<tr class="table-row" data-href="http://tutorialsplane.com"><td>Jhohn</td><td>jhone@gmail.com</td><td>USA</td></tr>*@
+                      
                     }
                 </tbody>
             </table>

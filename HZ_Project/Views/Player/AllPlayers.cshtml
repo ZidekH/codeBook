@@ -1,13 +1,11 @@
 ﻿@model IEnumerable<HZ_Project.Models.Player>
 
-    @{
-        ViewData["Title"] = "AddPlayer";
-        Layout = "~/Views/Shared/_Layout.cshtml";
-    }
-
+@{
+    ViewData["Title"] = "AddPlayer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -32,16 +30,12 @@
                     <td>@x.Name</td>
                     <td>@x.LastName</td>
                     <td>@x.NickName</td>
-                    <td><button class="btn btn-primary btn-sm" asp-controller="player" asp-action="Details"  asp-route-id="1">Upravit</button></td>
+                    <td><button class="btn btn-primary btn-sm" asp-controller="player" asp-action="Details" asp-route-id="1">Upravit</button></td>
                 </tr>
             }
-
         </tbody>
     </table>
-
-
     <div>
-
         <a asp-action="Index">Back to List</a>
     </div>
 </body>

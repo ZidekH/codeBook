@@ -15,7 +15,6 @@ namespace EFDatabase.Models
         public DateTime DateTo { get; set; }
         public bool IsCurrentSeason { get; set; }
         public int CountOfGoals { get; set; }
-
         public List<PlayerSeasonStatistic> PlayerSeasonsStatistics { get; set; }
 
     }

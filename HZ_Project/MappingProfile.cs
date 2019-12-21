@@ -32,13 +32,6 @@ namespace HZ_Project
 
             CreateMap<EF_Models.PlayerWeekendStatistic, DTO_Models.PlayerWeekendStatistic>();
 
-
-
-
-            //CreateMap<IEnumerable<EF_Models.Player>, IEnumerable<DTO_Models.Player>>();
-
-
-            //CreateMap<EF_Models., DTO_Models.PlayeDetailsViewModel>();
         }
     }
 }

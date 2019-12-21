@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HZ_Project.Controllers
 {
-    [Route("{Controler}")]
+    [Route("Weekend")]
     public class WeekendSessionController : Controller
     {
         private IMapper _mapper;
@@ -20,11 +20,7 @@ namespace HZ_Project.Controllers
             this._mapper = mapper;
             this._repository = repository;
         }
-
-        public IActionResult Index()
-        {
-            return View();
-        }
+      
 
         [HttpGet]
         [Route("matchesByWeekend/{id}")]
@@ -47,11 +43,10 @@ namespace HZ_Project.Controllers
         [Route("GoalManager")]
         public ActionResult GoalManager(string GoalAction, string playerWeekendStatisticsId, string matchId)
         {
-                       
-            var playerStat = _repository.PlayerWeekendStatistics.GetById(Convert.ToInt32(playerWeekendStatisticsId));
-            var currentMatch = _repository.Match.GetById_TeamsPlayerWeekendStsIncluded(Convert.ToInt32(matchId));
+            EFDatabase.Models.PlayerWeekendStatistic playerStat = _repository.PlayerWeekendStatistics.GetById(Convert.ToInt32(playerWeekendStatisticsId));
+            EFDatabase.Models.Match currentMatch = _repository.Match.GetById_TeamsPlayerWeekendStsIncluded(Convert.ToInt32(matchId));
 
-            var isHomeTeam = currentMatch.HomeTeam.PlayersStatsTeam.Contains(playerStat);
+            bool isHomeTeam = currentMatch.HomeTeam.PlayersStatsTeam.Contains(playerStat);
 
             if (GoalAction == "+")
             {
@@ -66,27 +61,24 @@ namespace HZ_Project.Controllers
                 if (playerStat.Goals > 0)
                 {
                     playerStat.Goals--;
-                    if (isHomeTeam && currentMatch.HomeTeamScore >0)
+                    if (isHomeTeam && currentMatch.HomeTeamScore > 0)
                         currentMatch.HomeTeamScore--;
-                    else if(!isHomeTeam && currentMatch.GuestTeamScore >0)
+                    else if (!isHomeTeam && currentMatch.GuestTeamScore > 0)
                         currentMatch.GuestTeamScore--;
                 }
             }
-
             _repository.PlayerWeekendStatistics.Update(playerStat);
             _repository.Match.Update(currentMatch);
 
-           return RedirectToAction("getMatch", new { id = Convert.ToInt32(matchId) });
-
+            return RedirectToAction("getMatch", new { id = Convert.ToInt32(matchId) });
         }
-        
+
+        //TODO:
         //Get Weekend session
         //Get Match
         //Post Add goal to playerStatistic and return View with goal
-                    //Pripise se gol do matche
+        //Delete goal
 
-        //Post Delete goal
 
-        //
     }
 }
