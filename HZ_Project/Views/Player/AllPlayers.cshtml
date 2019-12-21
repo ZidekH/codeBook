@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<HZ_Project.Models.Player>
 
 @{
-    ViewData["Title"] = "AddPlayer";
+    ViewData["Title"] = "AllPlayers";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -23,14 +23,14 @@
         </thead>
         <tbody>
 
-            @foreach (var x in Model)
+            @foreach (var player in Model)
             {
                 <tr>
-                    <th scope="row">@x.PlayerId</th>
-                    <td>@x.Name</td>
-                    <td>@x.LastName</td>
-                    <td>@x.NickName</td>
-                    <td><button class="btn btn-primary btn-sm" asp-controller="player" asp-action="Details" asp-route-id="1">Upravit</button></td>
+                    <th scope="row">@player.PlayerId</th>
+                    <td>@player.Name</td>
+                    <td>@player.LastName</td>
+                    <td>@player.NickName</td>
+                    <td><button class="btn btn-primary btn-sm" asp-controller="player" asp-action="Details" asp-route-id="@player.PlayerId">Upravit</button></td>
                 </tr>
             }
         </tbody>
