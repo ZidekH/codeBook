@@ -17,6 +17,7 @@ namespace HZ_Project
 {
     public class Startup
     {
+        //To Delete
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
